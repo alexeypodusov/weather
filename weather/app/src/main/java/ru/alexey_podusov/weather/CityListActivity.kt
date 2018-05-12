@@ -16,7 +16,7 @@ class CityListActivity : MvpAppCompatActivity(), CityListView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Components.get(javaClass)!!.inject(this)
+        WeatherApp.appComponent.inject(this)
         setContentView(R.layout.activity_main)
 
     }
