@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @InjectViewState
-class CityListPresenter: MvpPresenter<CityListView>() {
+class CityListPresenter : BasePresenter<CityListView>() {
     @Inject
     lateinit var mainService: MainService
 
@@ -29,13 +29,13 @@ class CityListPresenter: MvpPresenter<CityListView>() {
     }
 
     fun subscribeQueryTextChangedObservable(observable: InitialValueObservable<CharSequence>) {
-        observable
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .distinctUntilChanged()
-                .filter{ charSeq -> charSeq.length > 4  }
-                //.flatMap { queryCharSequence -> openWeatherMapService.findCity(StringBuilder(queryCharSequence).toString()) }
-                .observeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ find -> find }, { error -> error })
+        unsubscribeOnDestroy(
+                observable
+                        .debounce(300, TimeUnit.MILLISECONDS)
+                        .distinctUntilChanged()
+                        .flatMap { queryCharSequence -> mainService.getCitiesByQuery(StringBuilder(queryCharSequence).toString()) }
+                        .observeOn(Schedulers.io())
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .subscribe{ cities -> viewState.showCities(cities) })
     }
 }
