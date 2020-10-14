@@ -1,9 +1,11 @@
 {
-  "oragnizations": [
-    {"name": "test1", "address": "lenina 1"},
-    {"name": "test2", "address": "lenina 2"},
-    {"name": "test3", "address": "lenina 3"},
-    {"name": "test4", "address": "lenina 4"},
-    {"name": "test5", "address": "lenina 5"}
-  ]
+  "data" : {
+    "oragnizations": [
+      {"name": "test1", "address": "lenina 1"},
+      {"name": "test2", "address": "lenina 2"},
+      {"name": "test3", "address": "lenina 3"},
+      {"name": "test4", "address": "lenina 4"},
+      {"name": "test5", "address": "lenina 5"}
+    ]
+  }
 }
