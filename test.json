@@ -1,6 +1,6 @@
 {
   "data" : {
-    "oragnizations": [
+    "organizations": [
       {"name": "test1", "address": "lenina 1"},
       {"name": "test2", "address": "lenina 2"},
       {"name": "test3", "address": "lenina 3"},
